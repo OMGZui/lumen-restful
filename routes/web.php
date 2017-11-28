@@ -14,3 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/md5', function () use ($router) {
+    return md5(123456);
+});

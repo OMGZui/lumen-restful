@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Models\Posts;
+use App\Transformers\PostsTransformer;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -22,7 +23,9 @@ class PostsController extends Controller
             $item->sex = $item->sex == 0 ? '男' : '女';
         }
 
-        return response()->json(['results' => $result]);
+//        return response()->json(['results' => $result]);
+        return $this->response->paginator($result,new PostsTransformer());
+//        $this->response->error('This is an error.', 444);
     }
 
     public function show($id)
