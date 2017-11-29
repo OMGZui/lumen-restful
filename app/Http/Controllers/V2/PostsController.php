@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V2;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\Models\Posts;
 use App\Transformers\PostsTransformer;
 use Illuminate\Http\Request;

@@ -33,8 +33,6 @@ $app->withEloquent();
 |--------------------------------------------------------------------------
 */
 
-//api
-//$app->configure('api');
 //jwt
 $app->configure('jwt');
 
@@ -103,7 +101,7 @@ app('Dingo\Api\Auth\Auth')->extend('jwt', function ($app) {
     return new Dingo\Api\Auth\Provider\JWT($app['Tymon\JWTAuth\JWTAuth']);
 });
 
-// Injecting auth
+// 注入auth
 $app->singleton(Illuminate\Auth\AuthManager::class, function ($app) {
     return $app->make('auth');
 });
@@ -136,5 +134,4 @@ $app->router->group([
 });
 
 
-//dd($app);
 return $app;

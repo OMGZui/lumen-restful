@@ -7,7 +7,11 @@
  */
 
 
-$router->group(['prefix' => 'api'],function () use ($router) {
+$router->group([
+    'prefix' => 'api',
+    "namespace" => "V1",
+], function () use ($router) {
+
     $router->get('/', function () use ($router) {
         return $router->app->version();
     });
