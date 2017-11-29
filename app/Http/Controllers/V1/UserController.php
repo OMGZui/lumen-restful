@@ -50,7 +50,7 @@ class UserController extends Controller
 //        // 让user默认返回token数据
 //        $token = Auth::fromUser($user);
 
-        return $this->response->array(['results'=> $user]);
+        return $this->sendResponse($user,200);
 
     }
 
@@ -80,7 +80,7 @@ class UserController extends Controller
         ];
         $token = Auth::attempt($attributes);
 
-        return $this->response->array(['results'=> $token]);
+        return $this->sendResponse($token,200);
 
     }
 
@@ -91,7 +91,7 @@ class UserController extends Controller
      */
     public function show()
     {
-        return $this->response->array(['results'=> $this->user()]);
+        return $this->sendResponse($this->user(),200);
     }
 
 }

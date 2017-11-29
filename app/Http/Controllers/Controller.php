@@ -35,4 +35,43 @@ class Controller extends BaseController
         return $this->response->array($message)->setStatusCode(200);
     }
 
+    /**
+     * 正常response
+     *
+     * @param $result
+     * @param $message
+     * @return mixed
+     */
+    public function sendResponse($result, $message)
+    {
+        $response = [
+            'success' => true,
+            'data'    => $result,
+            'message' => $message,
+        ];
+
+        return $this->response->array($response,$message);
+    }
+
+    /**
+     * 错误response
+     *
+     * @param $error
+     * @param array $errorMessages
+     * @param int $code
+     * @return mixed
+     */
+    public function sendError($error, $errorMessages = [], $code = 404)
+    {
+        $response = [
+            'success' => false,
+            'message' => $error,
+        ];
+
+        if(!empty($errorMessages)){
+            $response['data'] = $errorMessages;
+        }
+
+        return $this->response->array($response,$code);
+    }
 }

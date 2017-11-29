@@ -24,9 +24,7 @@ class PostsController extends Controller
             $item->sex = $item->sex == 0 ? '男' : '女';
         }
 
-//        return response()->json(['results' => $result]);
         return $this->response->paginator($result,new PostsTransformer());
-//        $this->response->error('This is an error.', 444);
     }
 
     public function show($id)
@@ -34,14 +32,14 @@ class PostsController extends Controller
 
         $result = $this->posts->newQuery()->find($id);
 
-        return response()->json(['results' => $result]);
+        return $this->sendResponse($result,200);
     }
 
     public function update($id)
     {
         $result = $this->posts->newQuery()->where('id',$id)->restore();
 
-        return response()->json(['results' => $result]);
+        return $this->sendResponse($result,200);
     }
 
     public function store(Request $request)
@@ -53,6 +51,6 @@ class PostsController extends Controller
     {
         $result = $this->posts->newQuery()->where('id',$id)->delete();
 
-        return response()->json(['results' => $result]);
+        return $this->sendResponse($result,200);
     }
 }
